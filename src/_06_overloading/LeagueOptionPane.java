@@ -40,13 +40,15 @@ public class LeagueOptionPane {
 	}
 	
 	// 3. Call this method in the Runner class
-	
+	//done
 
 	// 4. Create another showMessageDialog() method that lets us also choose the Message and Title 
 	//    2 String parameters (one for the message and one for the title)
-	
+	public static void showMessageDialog2(String message, String title) {
+		
+	}
 	// 5. Call this method in the Runner class
-	
+	//done
 	
 	// 6. Create another showMessageDialog() method that lets us choose the Message, Title, and Image
 	//    3 String parameters (one for the message, one for the title, and one for the fileName)
