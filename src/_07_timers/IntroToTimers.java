@@ -28,7 +28,7 @@ public class IntroToTimers extends JPanel implements ActionListener, KeyListener
 	int speed = 30;
 	
 	// 1. Declare a Timer variable, but do not initialize it.
-
+	Timer timer;
 
 	public static void main(String[] args) {
 		IntroToTimers tg = new IntroToTimers();
@@ -44,7 +44,7 @@ public class IntroToTimers extends JPanel implements ActionListener, KeyListener
 		frame.addKeyListener(this);
 		
 		// 2. Set the time variable to maxTime
-
+		time = maxTime;
 		// 3. Initialize timer to a new Timer object. For the first argument, use 1000/speed. For the second argument, use this
 
 		// 11. Run it! Notice how it doesn't update? That's because our timer isn't triggering the actionPerformed() method yet!

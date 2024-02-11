@@ -30,8 +30,8 @@ public class LeagueOptionPane {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("example GUI");
-		label.setIcon(loadImage("example.jpeg"));
-		label.setText("LOL");
+		label.setIcon(loadImage("example.png"));
+		label.setText(message);
 		frame.pack();
 		
 		
@@ -44,15 +44,47 @@ public class LeagueOptionPane {
 
 	// 4. Create another showMessageDialog() method that lets us also choose the Message and Title 
 	//    2 String parameters (one for the message and one for the title)
-	public static void showMessageDialog2(String message, String title) {
+	public static void showMessageDialog(String message, String title) {
+		JFrame frame = new JFrame();
+		JLabel label = new JLabel();
 		
+		frame.setVisible(true);
+		frame.add(label);
+		frame.setSize(500,500);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle(title);
+		label.setIcon(loadImage("example.png"));
+		label.setText(message);
+		frame.pack();
+		
+		
+		
+		frame.setLocationRelativeTo(null);
 	}
 	// 5. Call this method in the Runner class
 	//done
 	
 	// 6. Create another showMessageDialog() method that lets us choose the Message, Title, and Image
 	//    3 String parameters (one for the message, one for the title, and one for the fileName)
+	public static void showMessageDialog(String message, String title, String image) {
+		JFrame frame = new JFrame();
+		JLabel label = new JLabel();
 	
+		frame.setVisible(true);
+		frame.add(label);
+		frame.setSize(500,500);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle(title);
+		label.setIcon(loadImage(image));
+		label.setText(message);
+		frame.pack();
+	
+	
+	
+		frame.setLocationRelativeTo(null);
+	}
 	// 7. Call this method in the Runner class
 	
 	// CHALLENGE: 
@@ -83,3 +115,5 @@ public class LeagueOptionPane {
 	}
 	
 }
+
+// Nothing else to work in here
