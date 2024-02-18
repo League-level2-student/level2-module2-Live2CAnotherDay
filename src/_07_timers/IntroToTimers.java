@@ -46,10 +46,10 @@ public class IntroToTimers extends JPanel implements ActionListener, KeyListener
 		// 2. Set the time variable to maxTime
 		time = maxTime;
 		// 3. Initialize timer to a new Timer object. For the first argument, use 1000/speed. For the second argument, use this
-
+		timer = new Timer(1000/speed, this);
 		// 11. Run it! Notice how it doesn't update? That's because our timer isn't triggering the actionPerformed() method yet!
 		// 12. Make the timer start!
-
+		timer.start();       
 		// 13. Run the program. Is it possible for you to win? 
 		// 14. Figure out how to make it harder or easier! (Which condition is most related to whether you win or not?)
 	}
@@ -57,10 +57,13 @@ public class IntroToTimers extends JPanel implements ActionListener, KeyListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// 8. Decrement time
-
-		// 9. if time is less than or equal to 2...
-
+		time --;
+		// 9. if time is less than or equal to 2... <-- cap Mike is devious here.
+		if (time == 0) {
 			// 10. Set time equal to maxTime
+			time = maxTime;
+		}
+			
 
 		
 		repaint();
@@ -71,16 +74,18 @@ public class IntroToTimers extends JPanel implements ActionListener, KeyListener
 		int keyCode = e.getKeyCode();
 		
 		// 4. if keyCode is 32 (that's the spacebar key!)...
-
-
+		if (keyCode == 32) {
 			// 5. if time is less than 2...
-
+			if (time < 2) {
 				// 6. Tell them they win!
-
-			
-			// 7. Otherwise, set time equal to maxTime
-
+				JOptionPane.showMessageDialog(null, "You won!");
+			}else {
+				// 7. Otherwise, set time equal to maxTime
+				time = maxTime;
+			}	
 		
+		}
+
 	}
 
 	@Override
@@ -100,3 +105,5 @@ public class IntroToTimers extends JPanel implements ActionListener, KeyListener
 	public void keyTyped(KeyEvent e) {
 	}
 }
+
+// Nothing to work on here and doin't play this it will make you rage. 
