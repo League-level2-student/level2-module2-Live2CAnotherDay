@@ -14,6 +14,7 @@ public class LeagueSnake extends PApplet {
     	Segment head;
     	int foodX;
     	int foodY;
+    	int snakeDirection = UP;
 
     
     /*
@@ -49,6 +50,7 @@ public class LeagueSnake extends PApplet {
     public void draw() {
         background(50, 50, 50);
         drawFood();
+        move();
         drawSnake();
     }
 
@@ -69,6 +71,7 @@ public class LeagueSnake extends PApplet {
 
     void drawTail() {
         // Draw each segment of the tail
+        fill(0,200,0);
         
     }
 
@@ -105,24 +108,33 @@ public class LeagueSnake extends PApplet {
     void move() {
         // Change the location of the Snake head based on the direction it is moving.
 
-        /*
-        if (direction == UP) {
+        
+        if (snakeDirection == UP) {
             // Move head up
-            
-        } else if (direction == DOWN) {
+            snakeDirection = UP;
+        } else if (snakeDirection == DOWN) {
             // Move head down
-                
-        } else if (direction == LEFT) {
-            
-        } else if (direction == RIGHT) {
-            
+        	snakeDirection = DOWN; 
+        } else if (snakeDirection == LEFT) {
+        	snakeDirection = LEFT;
+        } else if (snakeDirection == RIGHT) {
+        	snakeDirection = RIGHT;
         }
-        */
+        checkBoundaries();
+        
     }
 
     void checkBoundaries() {
         // If the snake leaves the frame, make it reappear on the other side
-        
+        if(head.x < 0) {
+        	head.x = 810;
+        }else if(head.x > 800) {
+        	head.x = -10;
+        }else if(head.y > 800) {
+        	head.x = -10;
+        }else if(head.y < 0) {
+        	head.x = ;
+        }
     }
 
     void eat() {
