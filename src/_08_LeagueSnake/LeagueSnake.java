@@ -16,6 +16,7 @@ public class LeagueSnake extends PApplet {
     	int foodY;
     	int snakeDirection = UP;
     	int score = 0;
+    	Segment tail;
 
     
     /*
@@ -31,6 +32,7 @@ public class LeagueSnake extends PApplet {
     @Override
     public void setup() {
         head = new Segment(260, 260);
+        tail = new Segment(260, 280);
         head.x = 400;
         head.y = 400;
     	frameRate(20);
@@ -78,6 +80,7 @@ public class LeagueSnake extends PApplet {
     void drawTail() {
         // Draw each segment of the tail
         fill(0,200,0);
+        rect(tail.x, tail.y, 10, 10);
         
     }
 
@@ -88,6 +91,8 @@ public class LeagueSnake extends PApplet {
      */
 
     void manageTail() {
+    	checkTailCollision();
+    	drawTail();
         // After drawing the tail, add a new segment at the "start" of the tail and
         // remove the one at the "end"
         // This produces the illusion of the snake tail moving.
@@ -96,7 +101,7 @@ public class LeagueSnake extends PApplet {
 
     void checkTailCollision() {
         // If the snake crosses its own tail, shrink the tail back to one segment
-        
+         
     }
 
     /*
