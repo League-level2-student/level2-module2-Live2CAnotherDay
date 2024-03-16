@@ -1,5 +1,7 @@
 package _08_LeagueSnake;
 
+import java.util.ArrayList;
+
 import processing.core.PApplet;
 
 public class LeagueSnake extends PApplet {
@@ -16,7 +18,7 @@ public class LeagueSnake extends PApplet {
     	int foodY;
     	int snakeDirection = UP;
     	int score = 0;
-    	Segment tail;
+    	ArrayList<Segment> tail = new ArrayList<Segment>();
 
     
     /*
@@ -32,7 +34,6 @@ public class LeagueSnake extends PApplet {
     @Override
     public void setup() {
         head = new Segment(260, 260);
-        tail = new Segment(260, 280);
         head.x = 400;
         head.y = 400;
     	frameRate(20);
@@ -80,8 +81,8 @@ public class LeagueSnake extends PApplet {
     void drawTail() {
         // Draw each segment of the tail
         fill(0,200,0);
-        rect(tail.x, tail.y, 10, 10);
-        
+        rect(head.x+10, head.y+10, 10, 10);
+        manageTail();
     }
 
     /*
@@ -93,6 +94,9 @@ public class LeagueSnake extends PApplet {
     void manageTail() {
     	checkTailCollision();
     	drawTail();
+    	tail.add(new Segment(head.x, head.y));
+    	tail.remove(0);
+    	
         // After drawing the tail, add a new segment at the "start" of the tail and
         // remove the one at the "end"
         // This produces the illusion of the snake tail moving.
@@ -101,7 +105,14 @@ public class LeagueSnake extends PApplet {
 
     void checkTailCollision() {
         // If the snake crosses its own tail, shrink the tail back to one segment
-         
+        for(int i = 0; i < tail.size();i ++) {
+        	if (head.x == tail.get(i).x || head.y == tail.get(i).y) {
+            	tail.clear();
+            	score = 0;
+            	tail.add(new Segment(head.x, head.y));
+            }
+        }
+    	
     }
 
     /*
@@ -169,6 +180,7 @@ public class LeagueSnake extends PApplet {
     	if (head.x == foodX && head.y == foodY) {
     		score ++;
     		dropFood();
+    		tail.add(new Segment(head.x, head.y));
     	}
         
     }
