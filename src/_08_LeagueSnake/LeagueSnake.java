@@ -58,6 +58,7 @@ public class LeagueSnake extends PApplet {
         background(50, 50, 50);
         drawFood();
         move();
+        System.out.println(head.x + " " + head.y);
         drawSnake();
         eat();
     }
@@ -74,15 +75,16 @@ public class LeagueSnake extends PApplet {
         // Draw the head of the snake followed by its tail
     	fill(0, 200, 0);
     	rect(head.x, head.y, 20, 20);
-    	
+    	manageTail();
     	
     }
 
     void drawTail() {
         // Draw each segment of the tail
         fill(0,200,0);
-        rect(head.x+10, head.y+10, 10, 10);
-        manageTail();
+        for (Segment s: tail) {
+        	rect(s.x, s.y, 20, 20);
+        }
     }
 
     /*
@@ -93,9 +95,10 @@ public class LeagueSnake extends PApplet {
 
     void manageTail() {
     	checkTailCollision();
+    	
     	drawTail();
-    	tail.add(new Segment(head.x, head.y));
-    	tail.remove(0);
+    	tail.add(0, new Segment(head.x, head.y));
+    	tail.remove(tail.size()-1);
     	
         // After drawing the tail, add a new segment at the "start" of the tail and
         // remove the one at the "end"
@@ -106,7 +109,7 @@ public class LeagueSnake extends PApplet {
     void checkTailCollision() {
         // If the snake crosses its own tail, shrink the tail back to one segment
         for(int i = 0; i < tail.size();i ++) {
-        	if (head.x == tail.get(i).x || head.y == tail.get(i).y) {
+        	if (head.x == tail.get(i).x && head.y == tail.get(i).y) {
             	tail.clear();
             	score = 0;
             	tail.add(new Segment(head.x, head.y));
@@ -144,6 +147,7 @@ public class LeagueSnake extends PApplet {
         if (snakeDirection == UP) {
             // Move head up
             head.y -= 20;
+            
         } else if (snakeDirection == DOWN) {
             // Move head down
         	head.y += 20;
